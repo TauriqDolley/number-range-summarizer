@@ -11,15 +11,17 @@ import java.util.Collection;
 public class SolutionTest {
 
     String testInput;
-    Solution s = new Solution();
+    Solution s;
     String finalOutput;
     String expectedOutput;
 
     @Before
     public void setData(){
         testInput =  "1,3,6,7,8,12,13,14,15,21,22,23,24,31";
-        finalOutput = s.summarizeCollection(s.collect(testInput));
+        s = new Solution(testInput);
+        finalOutput = s.getSolution();
         expectedOutput = "1, 3, 6-8, 12-15, 21-24, 31";
+
     }
 
     @Test
@@ -103,7 +105,6 @@ public class SolutionTest {
 
         //Tests equality
         assertEquals(expected, actual , "Should return empty string");
-
 
     }
 

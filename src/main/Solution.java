@@ -16,6 +16,16 @@ import org.junit.runner.notification.Failure;
 
 public class Solution implements NumberRangeSummarizer{
 
+    private String solution;
+
+    public Solution(String input){
+        this.solution = summarizeCollection(collect(input));
+    }
+
+    public String getSolution(){
+        return this.solution;
+    }
+
     //collect the input
     public Collection<Integer> collect(String input){
         //Checks for lack of input or a null value passed
@@ -51,7 +61,7 @@ public class Solution implements NumberRangeSummarizer{
                 if (next == prev + 1) {
                     sequential = true;
                     start = prev;
-                    //iterate until nonsequential number found
+                    //iterate until non-sequential number found
                     while (next == prev + 1 && iterator.hasNext()) {
                         prev = next;
                         next = iterator.next();
@@ -101,11 +111,13 @@ public class Solution implements NumberRangeSummarizer{
 
         Result result = JUnitCore.runClasses(test.SolutionTest.class);
         result.getFailures().stream().map(Failure::toString).forEach(System.out::println);
+
         System.out.println("Test Results : " + result.wasSuccessful());
 
-        Solution s = new Solution();
+        Solution solution = new Solution(testInput);
+
         System.out.println("Sample Input: " + testInput);
-        System.out.println("Result: " + s.summarizeCollection(s.collect(testInput)));
+        System.out.println("Result: " + solution.getSolution());
 
     }
 
